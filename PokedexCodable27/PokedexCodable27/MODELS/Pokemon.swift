@@ -6,35 +6,29 @@
 //  Copyright © 2019 Austin West. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-struct TopLevelDict: Decodable {
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case id
-        case abilities
-        case spritesDictionary = "sprites"
-    }
+struct Pokemon: Decodable {
     
     let name: String
     let id: Int
     let abilities: [AbilityDictionary]
-    let spritesDictionary: SpriteDictionary
-    
+    let sprites: SpritesDictionary
 }
 
-struct AbilityDictionary: Decodable {
-    let ability: Ability
-    
-    struct Ability: Decodable {
-        let name: String
-    }
-}
-
-struct SpriteDictionary: Decodable {
+struct SpritesDictionary: Decodable {
     let image: URL
     
     private enum CodingKeys: String, CodingKey {
         case image = "front_shiny"
+    }
+}
+
+struct AbilityDictionary: Decodable {
+    
+    let ability: Ability
+    
+    struct Ability: Decodable {
+        let name: String
     }
 }
